@@ -7,7 +7,7 @@ library(evoteams)
 context("Finding graphviz figures")
 
 test_that("find graphviz returns full path", {
-  path <- find_graphviz("team-structure-single-project", package = "evoteams")
+  path <- find_graphviz("team-structure", package = "evoteams")
   expect_true(file.exists(path))
 })
 
