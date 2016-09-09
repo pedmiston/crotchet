@@ -10,7 +10,7 @@ find_graphviz <- function(name, package, inst_dir_name = "extdata") {
 list_graphviz <- function(package, inst_dir_name = "extdata", strip_ext = TRUE) {
   extdata_dir <- system.file(inst_dir_name, package = package)
   gv_files <- list.files(extdata_dir, "*.gv", recursive = TRUE)
-  if(strip_ext) gv_files <- file_path_sans_ext(basename(gv_files))
+  if(strip_ext) gv_files <- tools::file_path_sans_ext(basename(gv_files))
   gv_files
 }
 

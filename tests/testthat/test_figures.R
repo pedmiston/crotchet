@@ -1,5 +1,3 @@
-library(crotchet)
-
 # TODO: Create a fake package to run tests on!
 #       Right now, tests depend on the evoteams package.
 library(evoteams)
