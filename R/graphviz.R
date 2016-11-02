@@ -15,12 +15,18 @@ list_graphviz <- function(package, inst_dir_name = "extdata", strip_ext = TRUE) 
 }
 
 #' Read the graphviz files in a package as knitr chunks.
-#' @importFrom knitr read_chunk
 #' @export
 read_all_graphviz_chunks <- function(package) {
   chunk_names <- list_graphviz(package, strip_ext = TRUE)
   for (name in chunk_names) {
-    chunk_path <- find_graphviz(name, package)
-    read_chunk(chunk_path, labels = name)
+    read_graphviz_chunk(name, package)
   }
+}
+
+#' Read a specific graphviz file as a knitr chunk.
+#' @importFrom knitr read_chunk
+#' @export
+read_graphviz_chunk <- function(name, package) {
+  chunk_path <- find_graphviz(name, package)
+  read_chunk(chunk_path, labels = name)
 }
