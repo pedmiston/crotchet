@@ -24,9 +24,14 @@ read_all_graphviz_chunks <- function(package) {
 }
 
 #' Read a specific graphviz file as a knitr chunk.
+#' @param name The name of the graphviz file to look for.
+#' @param package The name of the package to search in.
+#' @param new_name Optional. Specify the name of the chunk to load.
+#'        Defaults to using the name of the file.
 #' @importFrom knitr read_chunk
 #' @export
-read_graphviz_chunk <- function(name, package) {
+read_graphviz_chunk <- function(name, package, new_name) {
   chunk_path <- find_graphviz(name, package)
-  read_chunk(chunk_path, labels = name)
+  if (missing(new_name)) new_name <- name
+  read_chunk(chunk_path, labels = new_name)
 }
