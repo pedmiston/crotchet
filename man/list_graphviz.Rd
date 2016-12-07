@@ -4,7 +4,7 @@
 \alias{list_graphviz}
 \title{List all graphviz files available in the specified package}
 \usage{
-list_graphviz(package, inst_dir_name = "extdata", strip_ext = TRUE)
+list_graphviz(package, strip_ext = TRUE)
 }
 \description{
 List all graphviz files available in the specified package

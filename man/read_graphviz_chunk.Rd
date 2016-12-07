@@ -4,7 +4,15 @@
 \alias{read_graphviz_chunk}
 \title{Read a specific graphviz file as a knitr chunk.}
 \usage{
-read_graphviz_chunk(name, package)
+read_graphviz_chunk(name, package, new_name)
+}
+\arguments{
+\item{name}{The name of the graphviz file to look for.}
+
+\item{package}{The name of the package to search in.}
+
+\item{new_name}{Optional. Specify the name of the chunk to load.
+Defaults to using the name of the file.}
 }
 \description{
 Read a specific graphviz file as a knitr chunk.
