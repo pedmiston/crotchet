@@ -41,6 +41,7 @@ read_graphviz_chunk <- function(name, package, new_name) {
 #' @param ... Optional arguments passed on to \code{\link{DiagrammeR::grViz}}.
 #'
 #' @import dplyr
+#' @export
 diagram_graphviz <- function(name, package, ...) {
   find_graphviz(name, package) %>%
     DiagrammeR::grViz(...)
