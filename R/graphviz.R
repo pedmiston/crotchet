@@ -31,3 +31,17 @@ read_graphviz_chunk <- function(name, package, new_name) {
   if (missing(new_name)) new_name <- name
   read_chunk(chunk_path, labels = new_name)
 }
+
+#' Read a graphviz figure from source using DiagrammeR.
+#'
+#' @param name The name of the graphviz source file, without the
+#'   .gv extension.
+#' @param package The name of the package where to find the graphviz
+#'   file.
+#' @param ... Optional arguments passed on to \code{\link{DiagrammeR::grViz}}.
+#'
+#' @import dplyr
+diagram_graphviz <- function(name, package, ...) {
+  find_graphviz(name, package) %>%
+    DiagrammeR::grViz(...)
+}
