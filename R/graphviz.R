@@ -46,3 +46,24 @@ diagram_graphviz <- function(name, package, ...) {
   find_graphviz(name, package) %>%
     DiagrammeR::grViz(...)
 }
+
+#' Render a graphviz figure as svg and import it.
+#' @import dplyr
+#' @export
+read_graphviz <- function(name, package, ...) {
+  temp1 <- tempfile("diagrammer", fileext = ".svg")
+  diagram_graphviz(name, package, ...) %>%
+    DiagrammeRsvg::export_svg() %>%
+    write(temp1)
+
+  temp2 <- tempfile("grconvert", fileext = ".svg")
+  grConvert::convertPicture(temp1, temp2)
+
+  pictureGrob <- grImport2::readPicture(temp2) %>%
+    grImport2::pictureGrob()
+
+  # remove temp files
+  file.remove(temp1, temp2)
+
+  pictureGrob
+}
