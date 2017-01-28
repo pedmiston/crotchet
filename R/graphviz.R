@@ -70,6 +70,7 @@ read_graphviz <- function(name, package, ...) {
 
 #' Draw a graphviz image using grid.
 #' @import magrittr
+#' @import grid
 #' @export
 draw_graphviz <- function(name, package, ...) {
   grid.newpage()
