@@ -7,7 +7,7 @@ find_graphviz <- function(name, package, inst_dir_name = "extdata") {
 #' List all graphviz files available in the specified package
 #' @export
 list_graphviz <- function(package, strip_ext = TRUE) {
-  list_extdata(package, re_files = "*.gv", strip_ext = strip_ext)
+  list_extdata(package, re_files = "*.gv$", strip_ext = strip_ext)
 }
 
 #' Read the graphviz files in a package as knitr chunks.
