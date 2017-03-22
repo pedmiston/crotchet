@@ -85,7 +85,7 @@ read_graphviz_with_images <- function(name, package, ...) {
   dot_source <- find_graphviz(name, package)
 
   # Render gv -> svg using dot
-  temp1 <- tempfile("dot", "/Users/work/Desktop", fileext = ".png")
+  temp1 <- tempfile("dot", fileext = ".png")
   system(paste("dot -Tpng -o", temp1, dot_source))
 
   # Read png in as a grob
