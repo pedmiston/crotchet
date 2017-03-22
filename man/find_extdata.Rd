@@ -9,4 +9,3 @@ find_extdata(name, ext, package, inst_dir_name)
 \description{
 Return a path to a file included in the specified package.
 }
-

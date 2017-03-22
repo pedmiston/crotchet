@@ -9,4 +9,3 @@ find_graphviz(name, package, inst_dir_name = "extdata")
 \description{
 Returns a path to a graphviz file included in the specified package.
 }
-

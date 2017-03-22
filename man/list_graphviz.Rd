@@ -9,4 +9,3 @@ list_graphviz(package, strip_ext = TRUE)
 \description{
 List all graphviz files available in the specified package
 }
-

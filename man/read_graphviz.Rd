@@ -9,4 +9,3 @@ read_graphviz(name, package, ...)
 \description{
 Render a graphviz figure as svg and import it.
 }
-

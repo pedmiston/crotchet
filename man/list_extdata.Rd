@@ -9,4 +9,3 @@ list_extdata(package, re_files, inst_dir_name = "extdata", strip_ext = TRUE)
 \description{
 List extdata files available in the specified package by type.
 }
-

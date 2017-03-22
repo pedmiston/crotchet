@@ -18,4 +18,3 @@ file.}
 \description{
 Read a graphviz figure from source using DiagrammeR.
 }
-

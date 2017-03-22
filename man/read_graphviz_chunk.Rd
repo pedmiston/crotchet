@@ -17,4 +17,3 @@ Defaults to using the name of the file.}
 \description{
 Read a specific graphviz file as a knitr chunk.
 }
-

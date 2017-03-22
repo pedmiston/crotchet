@@ -9,4 +9,3 @@ draw_graphviz(name, package, ...)
 \description{
 Draw a graphviz image using grid.
 }
-

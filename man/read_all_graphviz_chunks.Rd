@@ -9,4 +9,3 @@ read_all_graphviz_chunks(package)
 \description{
 Read the graphviz files in a package as knitr chunks.
 }
-
