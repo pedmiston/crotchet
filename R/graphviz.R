@@ -76,3 +76,23 @@ draw_graphviz <- function(name, package, ...) {
   grid.newpage()
   read_graphviz(name, package, ...) %>% grid.draw()
 }
+
+
+#' Render a graphviz figure directly with the dot engine.
+#' @import dplyr
+#' @export
+read_graphviz_with_images <- function(name, package, ...) {
+  dot_source <- find_graphviz(name, package)
+
+  # Render gv -> svg using dot
+  temp1 <- tempfile("dot", "/Users/work/Desktop", fileext = ".png")
+  system(paste("dot -Tpng -o", temp1, dot_source))
+
+  # Read png in as a grob
+  pictureGrob <- png::readPNG(temp1) %>%
+    grid::rasterGrob()
+
+  file.remove(temp1)
+
+  pictureGrob
+}
