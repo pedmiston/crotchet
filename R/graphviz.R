@@ -96,3 +96,12 @@ read_graphviz_with_images <- function(name, package, ...) {
 
   pictureGrob
 }
+
+#' Draw a graphviz figure that has images in it with grid.
+#' @import dplyr
+#' @import grid
+#' @export
+draw_graphviz_with_images <- function(name, package, ...) {
+  grid.newpage()
+  read_graphviz_with_images(name, package, ...) %>% grid.draw()
+}

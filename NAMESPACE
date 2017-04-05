@@ -2,6 +2,7 @@
 
 export(diagram_graphviz)
 export(draw_graphviz)
+export(draw_graphviz_with_images)
 export(draw_image)
 export(find_chunk_file)
 export(find_extdata)
