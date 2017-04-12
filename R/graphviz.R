@@ -51,21 +51,36 @@ diagram_graphviz <- function(name, package, ...) {
 #' @import dplyr
 #' @export
 read_graphviz <- function(name, package, ...) {
-  temp1 <- tempfile("diagrammer", fileext = ".svg")
+  temp <- tempfile("diagrammer", fileext = ".svg")
   diagram_graphviz(name, package, ...) %>%
     DiagrammeRsvg::export_svg() %>%
-    write(temp1)
+    write(temp)
+  read_svg(temp)
+}
 
-  temp2 <- tempfile("grconvert", fileext = ".svg")
-  grConvert::convertPicture(temp1, temp2)
+#' Read an svg figure in as a grob.
+#' @import dplyr
+#' @export
+read_svg <- function(svg_file) {
+  temp <- tempfile("grconvert", fileext = ".svg")
+  grConvert::convertPicture(svg_file, temp)
 
-  pictureGrob <- grImport2::readPicture(temp2) %>%
+  picture_grob <- grImport2::readPicture(temp) %>%
     grImport2::pictureGrob()
 
-  # remove temp files
-  file.remove(temp1, temp2)
+  file.remove(temp)
 
-  pictureGrob
+  picture_grob
+}
+
+#' Draw an svg file using grid.
+#' @import dplyr
+#' @import grid
+#' @export
+draw_svg <- function(svg_file) {
+  grid.newpage()
+  picture_grob <- read_svg(svg_file)
+  grid.draw(picture_grob)
 }
 
 #' Draw a graphviz image using grid.
