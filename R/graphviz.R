@@ -1,6 +1,10 @@
 #' Returns a path to a graphviz file included in the specified package.
 #' @export
 find_graphviz <- function(name, package, inst_dir_name = "extdata") {
+  if (missing(package)) {
+    stopifnot(file.exists(name))
+    return(tools::file_path_as_absolute(name))
+  }
   find_extdata(name, ext = ".gv", package = package, inst_dir_name = inst_dir_name)
 }
 
@@ -28,7 +32,9 @@ read_all_graphviz_chunks <- function(package) {
 #' @export
 read_graphviz_chunk <- function(name, package, new_name) {
   chunk_path <- find_graphviz(name, package)
-  if (missing(new_name)) new_name <- name
+  if (missing(new_name)) {
+    new_name <- tools::file_path_sans_ext(basename(name))
+  }
   read_chunk(chunk_path, labels = new_name)
 }
 
@@ -51,11 +57,20 @@ diagram_graphviz <- function(name, package, ...) {
 #' @import dplyr
 #' @export
 read_graphviz <- function(name, package, ...) {
+  # Create the graphviz graph with DiagrammeR and
+  # export to a temporary SVG file.
   temp <- tempfile("diagrammer", fileext = ".svg")
   diagram_graphviz(name, package, ...) %>%
     DiagrammeRsvg::export_svg() %>%
     write(temp)
-  read_svg(temp)
+
+  # Read the temporary SVG file back in as a pictureGrob
+  picture_grob <- read_svg(temp)
+
+  # Remove the temporary SVG file
+  file.remove(temp)
+
+  picture_grob
 }
 
 #' Read an svg figure in as a grob.
