@@ -7,12 +7,15 @@
 read_graphviz_chunk(name, package, new_name)
 }
 \arguments{
-\item{name}{The name of the graphviz file to look for.}
+\item{name}{The name of the graphviz file. Can be the path to
+a graphviz file or the basename of a graphviz file
+installed in a specific package.}
 
-\item{package}{The name of the package to search in.}
+\item{package}{Optional. The package to search in if the provided
+name does not exist.}
 
 \item{new_name}{Optional. Specify the name of the chunk to load.
-Defaults to using the name of the file.}
+Defaults to using the basename of the file.}
 }
 \description{
 Read a specific graphviz file as a knitr chunk.

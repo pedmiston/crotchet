@@ -24,10 +24,13 @@ read_all_graphviz_chunks <- function(package) {
 }
 
 #' Read a specific graphviz file as a knitr chunk.
-#' @param name The name of the graphviz file to look for.
-#' @param package The name of the package to search in.
+#' @param name The name of the graphviz file. Can be the path to
+#'        a graphviz file or the basename of a graphviz file
+#'        installed in a specific package.
+#' @param package Optional. The package to search in if the provided
+#'        name does not exist.
 #' @param new_name Optional. Specify the name of the chunk to load.
-#'        Defaults to using the name of the file.
+#'        Defaults to using the basename of the file.
 #' @importFrom knitr read_chunk
 #' @export
 read_graphviz_chunk <- function(name, package, new_name) {
