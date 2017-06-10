@@ -1,6 +1,10 @@
 #' Returns a path to an image file included in the specified package.
 #' @export
 find_image <- function(name, package, inst_dir_name = "extdata") {
+  if (missing(package)) {
+    stopifnot(file.exists(name))
+    return(tools::file_path_as_absolute(name))
+  }
   find_extdata(name, ext = ".png", package = package, inst_dir_name = inst_dir_name)
 }
 
