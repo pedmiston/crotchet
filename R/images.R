@@ -14,12 +14,26 @@ list_images <- function(package, strip_ext = TRUE) {
   list_extdata(package, re_files = "*.png$", strip_ext = strip_ext)
 }
 
-#' Read an image file stored in a package
+#' Read an image file from a full path or in a package.
+#'
+#' Reads png or jpg/jpeg files as grid::grob objects.
+#'
 #' @import magrittr
 #' @export
 read_image <- function(name, package) {
-  find_image(name, package) %>%
-    png::readPNG() %>%
+  found <- find_image(name, package)
+
+  ext <- tools::file_ext(found)
+  if(ext == "png") {
+    reader <- png::readPNG
+  } else if(ext %in% c("jpg", "jpeg")) {
+    reader <- jpeg::readJPEG
+  } else {
+    stop(paste("reader for file", found, "not found"))
+  }
+
+  found %>%
+    reader() %>%
     grid::rasterGrob()
 }
 
