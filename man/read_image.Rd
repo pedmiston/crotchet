@@ -2,10 +2,10 @@
 % Please edit documentation in R/images.R
 \name{read_image}
 \alias{read_image}
-\title{Read an image file stored in a package}
+\title{Read an image file from a full path or in a package.}
 \usage{
 read_image(name, package)
 }
 \description{
-Read an image file stored in a package
+Reads png or jpg/jpeg files as grid::grob objects.
 }
