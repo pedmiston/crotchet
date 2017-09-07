@@ -4,7 +4,7 @@
 \alias{draw_image}
 \title{Draw an image file stored in a package with grid}
 \usage{
-draw_image(name, package)
+draw_image(name, package, ...)
 }
 \description{
 Draw an image file stored in a package with grid

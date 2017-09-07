@@ -20,28 +20,27 @@ list_images <- function(package, strip_ext = TRUE) {
 #'
 #' @import magrittr
 #' @export
-read_image <- function(name, package) {
+read_image <- function(name, package, ...) {
   found <- find_image(name, package)
 
+  readers <- list(
+    png = png::readPNG,
+    jpg = jpeg::readJPEG,
+    jpeg = jpeg::readJPEG
+  )
   ext <- tools::file_ext(found)
-  if(ext == "png") {
-    reader <- png::readPNG
-  } else if(ext %in% c("jpg", "jpeg")) {
-    reader <- jpeg::readJPEG
-  } else {
-    stop(paste("reader for file", found, "not found"))
-  }
+  reader <- readers[[ext]]
 
   found %>%
     reader() %>%
-    grid::rasterGrob()
+    grid::rasterGrob(...)
 }
 
 #' Draw an image file stored in a package with grid
 #' @import magrittr
 #' @export
-draw_image <- function(name, package) {
+draw_image <- function(name, package, ...) {
   grid::grid.newpage()
-  read_image(name, package) %>%
+  read_image(name, package, ...) %>%
     grid::grid.draw()
 }

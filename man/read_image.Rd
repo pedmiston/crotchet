@@ -4,7 +4,7 @@
 \alias{read_image}
 \title{Read an image file from a full path or in a package.}
 \usage{
-read_image(name, package)
+read_image(name, package, ...)
 }
 \description{
 Reads png or jpg/jpeg files as grid::grob objects.
