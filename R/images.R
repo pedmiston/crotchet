@@ -44,3 +44,14 @@ draw_image <- function(name, package, ...) {
   read_image(name, package, ...) %>%
     grid::grid.draw()
 }
+
+#' Creates a function that draws images from a directory.
+#' @export
+read_images <- function(dir, ext) {
+  function(key) {
+    name <- paste0(key, ".", ext)
+    full_path <- file.path(dir, name)
+    cat(full_path)
+    draw_image(full_path)
+  }
+}
